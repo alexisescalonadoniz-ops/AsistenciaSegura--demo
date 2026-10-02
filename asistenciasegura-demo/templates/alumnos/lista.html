@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block titulo %}Alumnos{% endblock %}
+{% block contenido %}
+<h1>Alumnos registrados</h1>
+
+<section class="tarjeta">
+  <h2>Registrar alumno</h2>
+  <form method="post" class="fila">
+    <input name="matricula" placeholder="Matrícula" required>
+    <input name="nombre" placeholder="Nombre completo" required class="ancho">
+    <input name="grupo" placeholder="Grupo" required maxlength="10">
+    <input name="uid_credencial" placeholder="UID (opcional)">
+    <button type="submit">Guardar</button>
+  </form>
+</section>
+
+<section class="tarjeta">
+  <table>
+    <thead>
+      <tr><th>Matrícula</th><th>Nombre</th><th>Grupo</th><th>UID credencial</th></tr>
+    </thead>
+    <tbody>
+      {% for a in alumnos %}
+        <tr>
+          <td>{{ a.matricula }}</td>
+          <td>{{ a.nombre }}</td>
+          <td>{{ a.grupo }}</td>
+          <td>{% if a.uid_credencial %}<code>{{ a.uid_credencial }}</code>{% else %}<span class="tenue">Sin credencial</span>{% endif %}</td>
+        </tr>
+      {% else %}
+        <tr><td colspan="4" class="tenue">No hay alumnos registrados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="tenue total">Total: {{ alumnos|length }}</p>
+</section>
+{% endblock %}
