@@ -1,0 +1,11 @@
+# Variables de entorno — nunca se suben al repositorio
+.env
+
+# Certificado de Aiven (en Render se carga como Secret File)
+*.pem
+
+# Entorno virtual y archivos de Python
+venv/
+.venv/
+__pycache__/
+*.pyc
